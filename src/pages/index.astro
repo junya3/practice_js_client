@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+interface PageFrontmatter {
+  url: string;
+  title: string;
+}
+
+const pages = await Astro.glob<PageFrontmatter>('./*/index.astro');
+
+const pagetitle = 'クライアントサイドの学習';
+---
+
+<Layout title={pagetitle}>
+  <h1>{pagetitle}</h1>
+  <ul>
+    {
+      pages.map((page) => (
+        <li>
+          <a href={page.url}>{page.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
