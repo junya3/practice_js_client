@@ -5,9 +5,9 @@ interface Props {
 const { id } = Astro.props as Props;
 ---
 
-<li id={id} class='card'>
+<div id={id} class='card'>
   <slot />
-</li>
+</div>
 
 <style lang='scss'>
   @use '@assets/style/foundation' as *;
