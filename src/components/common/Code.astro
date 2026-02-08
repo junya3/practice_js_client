@@ -1,19 +1,27 @@
 ---
 interface Props {
   code: string;
+  language?: string;
 }
-const { code } = Astro.props as Props;
+const { code, language = 'JavaScript' } = Astro.props as Props;
 ---
 
-<pre class='code'><code class="code__inner">{code}</code></pre>
+<pre
+  class='code'
+  style={`--code-lang: '${language}'`}><code class="code__inner">{code}</code></pre>
 
 <style lang='scss'>
   @use '@assets/style/foundation' as *;
   .code {
-    margin-block: 0.5rem 1rem;
+    display: grid;
     padding: 1rem;
     border-radius: 0.25rem;
-    background: mix-transparent(black, 15);
+    border: 1px solid mix-transparent(black, 5);
+    background: mix-transparent(black, 5);
     color: mix-transparent(black, 65);
+
+    &::before {
+      content: '//- ' var(--code-lang);
+    }
   }
 </style>
