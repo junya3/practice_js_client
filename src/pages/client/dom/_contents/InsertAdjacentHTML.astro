@@ -1,0 +1,70 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 4;
+const id = 'insertAdjacentHTML';
+const code = ``;
+
+const values = [
+  {
+    name: 'beforebegin',
+    desc: '開始タグの直前に挿入',
+  },
+  {
+    name: 'afterbegin',
+    desc: '開始タグの直後に挿入',
+  },
+  {
+    name: 'beforeend',
+    desc: '終了タグの直前に挿入',
+  },
+  {
+    name: 'afterend',
+    desc: '終了タグの直後に挿入',
+  },
+];
+---
+
+<Card id={id}>
+  <h2>element.{id}()について</h2>
+  <p>
+    要素にHTML文字列を使って要素を挿入することができます。※ insertAdjacentHTML
+    はHTML文字列を直接挿入するため、 ユーザー入力には使用しません。
+  </p>
+  <ul>
+    {
+      values.map((value) => (
+        <li>
+          <dl>
+            <>
+              <dt>{value.name}：</dt>
+              <dd>{value.desc}</dd>
+            </>
+          </dl>
+        </li>
+      ))
+    }
+  </ul>
+  <Code code={code} />
+  <button type='button'>buttonの直後にpタグを挿入</button>
+</Card>
+
+<script>
+  const root = document.getElementById('insertAdjacentHTML');
+  if (root) {
+    const button = root.querySelector('button');
+    if (button) {
+      button.addEventListener(
+        'click',
+        (index) => {
+          button.insertAdjacentHTML(
+            'afterend',
+            '<p>新規に追加されたpタグです</p>',
+          );
+        },
+        { once: true },
+      );
+    }
+  }
+</script>
