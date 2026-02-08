@@ -4,8 +4,12 @@ import Code from '@/components/common/Code.astro';
 
 export const order = 1;
 export const title = 'DOM';
+const code = `const greeting = 'hello';
+const name = 'Taro';
+console.log(greeting + ' ' + name);`;
 ---
 
 <Layout title='test'>
+  <Code code={code} />
   <a class='return' href='/client'>戻る</a>
 </Layout>
