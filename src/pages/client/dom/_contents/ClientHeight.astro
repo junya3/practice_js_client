@@ -1,0 +1,13 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 1;
+const code = `const greeting = 'hello';
+const name = 'Taro';
+console.log(greeting + ' ' + name);`;
+---
+
+<Card>
+  <Code code={code} />
+</Card>
