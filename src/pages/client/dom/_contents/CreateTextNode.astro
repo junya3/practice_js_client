@@ -4,7 +4,15 @@ import Code from '@/components/common/Code.astro';
 
 export const contentOrder = 2;
 const id = 'createTextNode';
-const code = ``;
+const code = `const root = document.getElementById('createTextNode');
+if (root) {
+  const textNode = document.createTextNode('新しいテキストノードです');
+  const output = root.querySelector('output');
+  const button = root.querySelector('button');
+  if (output && button) {
+    button.addEventListener('click', () => output.appendChild(textNode));
+  }
+}`;
 ---
 
 <Card id={id}>
@@ -12,6 +20,7 @@ const code = ``;
   <p>
     新しいテキストノードを作成します。DOMとして丁寧に扱いたいときやセキュリティ面を考慮する際に使用します。createTextNodeで作成したノードは実体が1つのため、何度クリックしても複製されません。
   </p>
+  <Code code={code} />
   <button type='button'>実行する</button>
   <output></output>
 </Card>
