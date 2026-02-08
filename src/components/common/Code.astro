@@ -19,7 +19,7 @@ const { code, language = 'JavaScript' } = Astro.props as Props;
     border: 1px solid mix-transparent(black, 5);
     background: mix-transparent(black, 5);
     color: mix-transparent(black, 65);
-
+    white-space: pre-wrap;
     &::before {
       content: '//- ' var(--code-lang);
     }

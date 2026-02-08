@@ -3,8 +3,8 @@ import Card from '@/components/common/Card.astro';
 import Code from '@/components/common/Code.astro';
 
 export const contentOrder = 5;
-const id = 'previousElementSibling';
-const code = ``;
+export const id = 'previousElementSibling';
+const code = `output.textContent = String(button.previousElementSibling?.tagName);`;
 ---
 
 <Card id={id}>

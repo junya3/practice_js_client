@@ -3,8 +3,17 @@ import Card from '@/components/common/Card.astro';
 import Code from '@/components/common/Code.astro';
 
 export const contentOrder = 3;
-const id = 'firstElementChild';
-const code = ``;
+export const id = 'firstElementChild';
+const code = `const root = document.getElementById('firstElementChild');
+if (root) {
+  const button = root.querySelector('button');
+  const output = root.querySelector('output');
+  if (button && output) {
+    button.addEventListener('click', () => {
+      output.textContent = String(root.firstElementChild?.textContent);
+    });
+  }
+}`;
 ---
 
 <Card id={id}>

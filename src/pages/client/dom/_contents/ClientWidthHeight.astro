@@ -3,7 +3,7 @@ import Card from '@/components/common/Card.astro';
 import Code from '@/components/common/Code.astro';
 
 export const contentOrder = 1;
-const id = 'clientHeight';
+export const id = 'clientWidth_Height';
 const code = `const element = document.querySelector('.box');
 console.log(element.clientWidth, element.clientHeight)
 `;
@@ -31,7 +31,7 @@ console.log(element.clientWidth, element.clientHeight)
 </style>
 
 <script>
-  const root = document.getElementById('clientHeight');
+  const root = document.getElementById('clientWidth_Height');
   if (root) {
     const target = root.querySelector('.box');
     const button = root.querySelector('button');
