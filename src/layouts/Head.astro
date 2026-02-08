@@ -1,0 +1,14 @@
+---
+import site from '@layouts/_conf/_variable';
+import '@assets/style/_index.scss';
+
+const { title, desc = site.DESCRIPTION } = Astro.props;
+const TITLE = title ? title + ' | ' + site.SITENAME : site.SITENAME;
+---
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>{TITLE}</title>
+  <meta name='description' content={desc} />
+</head>

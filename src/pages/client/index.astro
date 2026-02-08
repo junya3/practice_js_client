@@ -1,4 +1,5 @@
 ---
+import ContentsList from '@/components/common/ContentsList.astro';
 import Layout from '@/layouts/Layout.astro';
 
 interface PageFrontmatter {
@@ -7,18 +8,10 @@ interface PageFrontmatter {
 }
 
 const pages = await Astro.glob<PageFrontmatter>('./*/index.astro');
-export const title = 'DOM';
+export const title = 'クライアントサイド';
 ---
 
 <Layout title={title}>
-  <h1>{title}</h1>
-  <ul>
-    {
-      pages.map((page) => (
-        <li>
-          <a href={page.url}>{page.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <ContentsList contents={pages} />
+  <a class='return' href='/'>戻る</a>
 </Layout>
