@@ -1,0 +1,37 @@
+@use '../foundation' as *;
+@use 'variable' as *;
+
+.wrapper,
+.header__inner {
+  width: min(600px, 100%);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+.wrapper {
+  padding-block: 1rem;
+}
+
+// ---------------------------------------------------
+// header
+// ---------------------------------------------------
+
+.header__inner {
+  padding: 1rem;
+  border-bottom: 1px solid;
+}
+.header__title {
+  font-weight: 700;
+  font-size: rem(18);
+}
+
+// ---------------------------------------------------
+// parts
+// ---------------------------------------------------
+.return {
+  margin-block: 2rem 1rem;
+}
+.code-box {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background: mix-transparent(black, 40);
+}

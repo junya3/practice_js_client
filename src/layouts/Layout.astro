@@ -1,0 +1,26 @@
+---
+import Head from './Head.astro';
+import Header from './Header.astro';
+
+interface Props {
+  pageId?: string;
+  title?: string;
+  desc?: string;
+}
+const { title, desc, pageId } = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang='ja'>
+  <Head title={title} desc={desc} />
+  <body>
+    <Header title={title} />
+    <main>
+      <div id={pageId && undefined} class='wrapper'>
+        <div class='container'>
+          <slot />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

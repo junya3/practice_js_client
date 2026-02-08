@@ -1,0 +1,46 @@
+@use 'function' as *;
+@use 'sass:map';
+
+// ----------------------------
+// hover, focus
+// ----------------------------
+
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+$breakpoint: (
+  'sp': 'screen and (max-width: 430px)',
+  'pc': 'screen and (min-width: 431px)',
+);
+
+@mixin mq($break) {
+  @media #{map.get($breakpoint, $break)} {
+    @content;
+  }
+}
+
+// ----------------------------
+// line-clamp
+// ----------------------------
+
+%line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+@mixin clamp($num: 1) {
+  @extend %line-clamp;
+  -webkit-line-clamp: $num;
+}
+
+@mixin dark() {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}

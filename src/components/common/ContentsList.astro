@@ -1,0 +1,32 @@
+---
+interface PageFrontmatter {
+  url: string;
+  title: string;
+}
+
+interface ContentsProps {
+  contents: PageFrontmatter[];
+}
+
+const { contents } = Astro.props as ContentsProps;
+---
+
+<ul class='contents-list'>
+  {
+    contents.map((content) => (
+      <li class='contents-list__content'>
+        <a href={content.url}>{content.title}</a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .contents-list {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+</style>

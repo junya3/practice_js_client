@@ -1,0 +1,19 @@
+---
+interface Props {
+  code: string;
+}
+const { code } = Astro.props as Props;
+---
+
+<pre class='code'><code class="code__inner">{code}</code></pre>
+
+<style lang='scss'>
+  @use '@assets/style/foundation' as *;
+  .code {
+    margin-block: 0.5rem 1rem;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background: mix-transparent(black, 15);
+    color: mix-transparent(black, 65);
+  }
+</style>
