@@ -21,7 +21,7 @@ const sortedCards = filteredCards.sort(
 ---
 
 <Layout title={title}>
-  <ul>
+  <ol>
     {
       sortedCards.map((card) => (
         <li>
@@ -29,7 +29,7 @@ const sortedCards = filteredCards.sort(
         </li>
       ))
     }
-  </ul>
+  </ol>
   <ul class='cards'>
     {
       sortedCards.map(({ default: Item }) => (
