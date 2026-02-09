@@ -1,0 +1,30 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 8;
+export const id = 'lastElementChild';
+const code = `// Card直下の「最後の要素（テキストノード除外）」を取得
+output.textContent = String(root.lastElementChild?.tagName);`;
+---
+
+<Card id={id}>
+  <h2>element.{id}について</h2>
+  <p>要素内の最後の子要素を取得する</p>
+  <Code code={code} />
+  <button type='button'>取得する</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('lastElementChild');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        output.textContent = String(root.lastElementChild?.tagName);
+      });
+    }
+  }
+</script>
