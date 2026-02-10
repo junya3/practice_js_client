@@ -1,11 +1,22 @@
-<li class='card'>
+---
+interface Props {
+  id: string;
+}
+const { id } = Astro.props as Props;
+---
+
+<div id={id} class='card'>
   <slot />
-</li>
+</div>
 
 <style lang='scss'>
+  @use '@assets/style/foundation' as *;
   .card {
+    display: grid;
+    gap: 0.5rem;
     padding: 1rem;
     border-radius: 0.25rem;
     border: 1px solid;
+    border-color: mix-transparent(black, 20);
   }
 </style>

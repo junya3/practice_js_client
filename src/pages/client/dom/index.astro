@@ -7,16 +7,29 @@ export const title = 'DOM';
 
 interface CardProps {
   contentOrder?: number;
+  id: string;
+  file: string;
   default: AstroComponentFactory;
 }
 
 const cards = await Astro.glob<CardProps>('./*/*.astro');
-const sortedCards = cards.sort(
+// _templateだけ排除
+const filteredCards = cards.filter((card) => !card.file.includes('_template'));
+const sortedCards = filteredCards.sort(
   (a, b) => (a.contentOrder ?? 0) - (b.contentOrder ?? 0),
 );
 ---
 
 <Layout title={title}>
+  <ol>
+    {
+      sortedCards.map((card) => (
+        <li>
+          <a href={`#${card.id}`}>{card.id}</a>
+        </li>
+      ))
+    }
+  </ol>
   <ul class='cards'>
     {
       sortedCards.map(({ default: Item }) => (

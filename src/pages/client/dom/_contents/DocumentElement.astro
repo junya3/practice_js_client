@@ -1,0 +1,35 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 7;
+export const id = 'documentElement';
+const scss = `document.documentElement.style.setProperty('--main-color', 'hotpink');
+`;
+const js = `output.textContent = String(document.documentElement.clientHeight) + 'px';`;
+---
+
+<Card id={id}>
+  <h2>document.{id}について</h2>
+  <p>
+    HTML要素を取得する。ドキュメント全体の高さや、css変数などを取得する際に使用します。
+  </p>
+  <Code code={scss} language='CSS変数をHTMLタグに設定' />
+  <Code code={js} />
+  <button type='button'>ドキュメント全体の高さを取得する</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('documentElement');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        output.textContent =
+          String(document.documentElement.scrollHeight) + 'px';
+      });
+    }
+  }
+</script>
