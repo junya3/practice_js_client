@@ -1,0 +1,59 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 17;
+export const id = 'getBoundingClientRect';
+const code = `console.log(element.getBoundingClientRect().top);`;
+---
+
+<Card id={id}>
+  <h2>element.getBoundingClientRect()について</h2>
+  <p>
+    要素のサイズや位置をまとめて取得することができます。（位置情報はwindowからなので、scroll量は含まれません）
+  </p>
+  <Code code={code} />
+  <div class='box'>BOX</div>
+  <button type='button'>取得する</button>
+  <output></output>
+</Card>
+
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background: #ccc;
+    text-align: center;
+    align-content: center;
+  }
+</style>
+
+<script>
+  const root = document.getElementById('getBoundingClientRect');
+  console.log(root.id);
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    const box = root.querySelector('.box');
+
+    function checkBox() {
+      if (!box) return;
+      let boxDetail = box.getBoundingClientRect();
+      const result = [
+        `width： ${boxDetail.width}`,
+        `height: ${boxDetail.height}`,
+        `top: ${boxDetail.top}`,
+        `left: ${boxDetail.left}`,
+        `bottom: ${boxDetail.bottom}`,
+        `right: ${boxDetail.right}`,
+      ].join('\n');
+      return result;
+    }
+
+    if (button && output && box) {
+      button.addEventListener('click', () => {
+        output.textContent = String(checkBox());
+      });
+    }
+  }
+</script>

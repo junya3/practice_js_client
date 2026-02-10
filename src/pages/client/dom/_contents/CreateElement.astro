@@ -1,0 +1,35 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 10;
+export const id = 'createElement';
+const code = `const p = document.createElement('p');
+// p要素の生成`;
+---
+
+<Card id={id}>
+  <h2>document.{id}()</h2>
+  <p>
+    新しい要素をつくる。createElementしただけでは追加されないので注意が必要です。
+  </p>
+  <Code code={code} />
+  <button type='button'>p要素を追加する</button>
+</Card>
+
+<script>
+  const root = document.getElementById('createElement');
+  if (root) {
+    const p = document.createElement('p');
+    const button = root.querySelector('button');
+    if (button) {
+      p.textContent = '新しく生成された要素です。';
+      p.style.color = '#00f';
+      p.style.fontWeight = '600';
+
+      button.addEventListener('click', () => {
+        root.appendChild(p);
+      });
+    }
+  }
+</script>

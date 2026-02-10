@@ -1,0 +1,40 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 13;
+export const id = 'removeAttribute';
+const code = `output.removeAttribute('data-sample-attribute');`;
+---
+
+<Card id={id}>
+  <h2>element.{id}()について</h2>
+  <p>要素の属性を削除します。</p>
+  <button type='button'>outputに付与された属性を削除</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('removeAttribute');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      const datasetValue = 'sample';
+      output.dataset.sampleAttribute = datasetValue;
+
+      output.textContent = [
+        '現在設定している属性',
+        `data-sample-attribute: ${output.dataset.sampleAttribute}`,
+      ].join('\n');
+
+      button.addEventListener('click', () => {
+        output.removeAttribute('data-sample-attribute');
+        output.textContent = [
+          '現在設定している属性',
+          `data-sample-attribute: ${output.dataset.sampleAttribute}`,
+        ].join('\n');
+      });
+    }
+  }
+</script>
