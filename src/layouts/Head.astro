@@ -1,6 +1,7 @@
 ---
 import site from '@layouts/_conf/_variable';
 import '@assets/style/_index.scss';
+import { ClientRouter, fade } from 'astro:transitions';
 
 const { title, desc = site.DESCRIPTION } = Astro.props;
 const TITLE = title ? title + ' | ' + site.SITENAME : site.SITENAME;
@@ -11,4 +12,5 @@ const TITLE = title ? title + ' | ' + site.SITENAME : site.SITENAME;
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   <title>{TITLE}</title>
   <meta name='description' content={desc} />
+  <ClientRouter />
 </head>
