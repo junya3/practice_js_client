@@ -1,0 +1,45 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 1;
+export const id = 'setInterval';
+const code = `let num = 0;
+window.setInterval(() => {
+  num++;
+  console.log(num);
+}, 1000);`;
+---
+
+<Card id={id}>
+  <h2>window.{id}()</h2>
+  <p>一定時間毎に処理を繰り返す。</p>
+  <Code code={code} />
+  <button type='button'>開始</button>
+  <output>0</output>
+</Card>
+
+<script>
+  const root = document.getElementById('setInterval');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      let timerId: number | null = null;
+      let count = 0;
+      button.addEventListener('click', () => {
+        if (timerId === null) {
+          timerId = window.setInterval(() => {
+            count++;
+            output.textContent = String(count);
+          }, 1000);
+          button.textContent = '停止する';
+        } else {
+          window.clearInterval(timerId);
+          timerId = null;
+          button.textContent = '開始する';
+        }
+      });
+    }
+  }
+</script>

@@ -1,0 +1,29 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 10;
+export const id = 'pathname';
+const code = `console.log(location.pathname)`;
+---
+
+<Card id={id}>
+  <h2>location.pathnameについて</h2>
+  <p>URLのパスを取得・設定する</p>
+  <Code code={code} />
+  <button type='button'>パスを取得する</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('pathname');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        output.textContent = location.pathname;
+      });
+    }
+  }
+</script>

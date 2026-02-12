@@ -1,0 +1,20 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 13;
+export const id = 'requestAnimationFrame';
+const code = `function step(timestamp) {
+  console.log(timestamp);
+  window.requestAnimationFrame(step);
+};
+window.requestAnimationFrame(step);`;
+---
+
+<Card id={id}>
+  <h2>window.requestAnimationFrame()について</h2>
+  <p>
+    アニメーションの処理をディスプレイのフレームレートに合わせて実行します。処理が重くなる都合上、テストコードはありません。アニメーションをキャンセルするときはwindow.canselAnimationFrame(animationID)を使いましょう。
+  </p>
+  <Code code={code} />
+</Card>

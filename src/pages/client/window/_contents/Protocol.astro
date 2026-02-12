@@ -1,0 +1,30 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 6;
+export const id = 'protocol';
+const code = `console.log(location.protocol)`;
+---
+
+<Card id={id}>
+  <h2>location.protocolについて</h2>
+  <p>URLのプロトコルを取得・設定します</p>
+  <p>https:の「:」までがプロトコルというところに注意しましょう。</p>
+  <Code code={code} />
+  <button type='button'>取得</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('protocol');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        output.textContent = location.protocol;
+      });
+    }
+  }
+</script>

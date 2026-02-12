@@ -1,0 +1,25 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 11;
+export const id = 'reload';
+const code = `location.reload();`;
+---
+
+<Card id={id}>
+  <h2>location.reload()について</h2>
+  <p>ブラウザを更新します。引数は現在の仕様ではありません。</p>
+  <Code code={code} />
+  <button type='button'>リロードします</button>
+</Card>
+
+<script>
+  const root = document.getElementById('reload');
+  if (root) {
+    const button = root.querySelector('button');
+    if (button) {
+      button.addEventListener('click', () => location.reload());
+    }
+  }
+</script>

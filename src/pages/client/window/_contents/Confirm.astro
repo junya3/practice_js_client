@@ -1,0 +1,36 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 7;
+export const id = 'confirm';
+const code = `const result: boolean = window.confirm('お腹空いていますか？');
+output.textContent = result
+  ? 'はいを選択しました'
+  : 'いいえを選択しました';`;
+---
+
+<Card id={id}>
+  <h2>window.{id}()について</h2>
+  <p>確認ダイアログを表示する</p>
+  <p>はいを選択するとtrue, いいえを選択するとfalseを返します。</p>
+  <Code code={code} />
+  <button type='button'>ダイアログを出現させる</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('confirm');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        const result: boolean = window.confirm('お腹空いていますか？');
+        output.textContent = result
+          ? 'はいを選択しました'
+          : 'いいえを選択しました';
+      });
+    }
+  }
+</script>

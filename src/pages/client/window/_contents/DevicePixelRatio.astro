@@ -1,0 +1,37 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 14;
+export const id = 'devicePixelRatio';
+const code = `console.log(window.devicePixelRatio);
+// Retinaディスプレイだった場合は2を出力します。`;
+---
+
+<Card id={id}>
+  <h2>window.devicePixelRatioについて</h2>
+  <p>
+    デバイスのピクセル比を取得する。Ratinaディスプレイかどうかの判断するときに使います。
+  </p>
+  <Code code={code} />
+  <button type='button'>判別する</button>
+  <output></output>
+</Card>
+<script>
+  const root = document.getElementById('devicePixelRatio');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        let result = window.devicePixelRatio;
+        if (result === 2) {
+          output.textContent = 'このディスプレイはRetinaディスプレイです。';
+        } else {
+          output.textContent =
+            'このディスプレイはRetinaディスプレイではありません。';
+        }
+      });
+    }
+  }
+</script>

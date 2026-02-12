@@ -1,0 +1,41 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 2;
+export const id = 'open';
+const code = `const newWindow = window.open('URL');
+// 代入することで、下記のような操作が可能
+newWindow.close();`;
+---
+
+<Card id={id}>
+  <h2>window.{id}()</h2>
+  <p>新しくwindowを開きます。</p>
+  <Code code={code} />
+  <button type='button'>新しいwindowを開いて、1秒で閉じます。</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('open');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', () => {
+        const newWindow = window.open('../');
+        output.textContent = newWindow
+          ? '新しいウィンドウを開きました'
+          : 'ウィンドウを開けませんでした';
+
+        setTimeout(() => {
+          if (newWindow) {
+            newWindow.close();
+            output.textContent = 'ウィンドウを閉じました';
+          }
+        }, 1000);
+      });
+    }
+  }
+</script>
