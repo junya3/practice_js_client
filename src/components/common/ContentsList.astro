@@ -17,10 +17,7 @@ const sortedContents = contents.sort((a, b) => a.order - b.order);
   {
     sortedContents.map((content) => (
       <li class='contents-list__content'>
-        <a href={content.url}>
-          {content.title}
-          {content.order}
-        </a>
+        <a href={content.url}>{content.title}</a>
       </li>
     ))
   }
