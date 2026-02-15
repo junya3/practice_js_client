@@ -2,6 +2,7 @@
 interface PageFrontmatter {
   url: string;
   title: string;
+  order: number;
 }
 
 interface ContentsProps {
@@ -9,13 +10,17 @@ interface ContentsProps {
 }
 
 const { contents } = Astro.props as ContentsProps;
+const sortedContents = contents.sort((a, b) => a.order - b.order);
 ---
 
 <ul class='contents-list'>
   {
-    contents.map((content) => (
+    sortedContents.map((content) => (
       <li class='contents-list__content'>
-        <a href={content.url}>{content.title}</a>
+        <a href={content.url}>
+          {content.title}
+          {content.order}
+        </a>
       </li>
     ))
   }
