@@ -1,0 +1,41 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 3;
+export const id = 'customEvent';
+const code = `const event = new CustomEvent('original', {
+  detail: { message: 'こんにちは' }
+});
+document.body.dispatchEvent(event);`;
+---
+
+<Card id={id}>
+  <h2>new CustomEvent()について</h2>
+  <p>新たにカスタムイベントを作成する</p>
+  <Code code={code} />
+  <button type='button'>実行する</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('customEvent');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      root.addEventListener('original', (e: Event) => {
+        const customEvent = e as CustomEvent<{ message: string }>;
+        output.textContent = customEvent.detail.message;
+      });
+      button.addEventListener('click', (e) => {
+        const event = new CustomEvent('original', {
+          detail: {
+            message: 'こんにちは',
+          },
+        });
+        root.dispatchEvent(event);
+      });
+    }
+  }
+</script>

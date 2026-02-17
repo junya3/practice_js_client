@@ -1,0 +1,44 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 16;
+export const id = 'detail';
+const code = `element.addEventListener('click', (e) => {
+  console.log(e.detail);
+})`;
+---
+
+<Card id={id}>
+  <h2>e.detailについて</h2>
+  <p>イベントの詳細を取得する</p>
+  <p>
+    clickイベントでは連続クリック回数を返します。
+    <br />
+    ※OS依存です。
+    <br />
+    ※イベントの種類によって意味は異なります。
+  </p>
+  <Code code={code} />
+  <button type='button'>取得</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('detail');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', (e) => {
+        let result;
+        let num = 4;
+        result = e.detail >= num ? `${num}回以上` : `${num}回未満`;
+        output.textContent = [
+          `クリック回数: ${e.detail}回`,
+          `${result}の連続クリックです`,
+        ].join('\n');
+      });
+    }
+  }
+</script>

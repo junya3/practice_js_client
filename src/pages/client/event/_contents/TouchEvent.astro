@@ -1,0 +1,16 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 12;
+export const id = 'touchEvent';
+const code = `const sample = new TouchEvent('touchstart');
+window.addEventListener('touchstart', () => console.log('touchが開始されました'));
+window.dispatchEvent(sample);`;
+---
+
+<Card id={id}>
+  <h2>new TouchEventについて</h2>
+  <p>タッチイベントを生成する</p>
+  <Code code={code} />
+</Card>

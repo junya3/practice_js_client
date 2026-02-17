@@ -1,0 +1,35 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 13;
+export const id = 'offsetXY';
+const code = `const element = document.querySelector('.element');
+element.addEventListener('click', (e) => {
+  console.log(e.offsetX, e.offsetY);
+})`;
+---
+
+<Card id={id}>
+  <h2>e.offsetX / Yについて</h2>
+  <p>イベントが発生した座標を「要素基準」に取得する</p>
+  <Code code={code} />
+  <button type='button'>取得する</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('offsetXY');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', (e) => {
+        output.textContent = [
+          `X座標: ${e.offsetX}px`,
+          `Y座標: ${e.offsetY}px`,
+        ].join('\n');
+      });
+    }
+  }
+</script>
