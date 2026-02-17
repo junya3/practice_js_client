@@ -1,0 +1,37 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 8;
+export const id = 'timeStamp';
+const code = ``;
+---
+
+<Card id={id}>
+  <h2>e.timeStampについて</h2>
+  <p>イベントが発生した時刻をタイムスタンプで取得する</p>
+  <Code code={code} />
+  <button type='button'>取得する</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('timeStamp');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      let lastTime = 0;
+      button.addEventListener('click', (e) => {
+        if (lastTime === 0) {
+          output.textContent = '初回のクリックです。';
+        } else {
+          const diff = e.timeStamp - lastTime;
+          const diffSec = Math.floor(diff / 1000);
+          output.textContent = `前回から${diffSec}秒経過しました`;
+        }
+        lastTime = e.timeStamp;
+      });
+    }
+  }
+</script>

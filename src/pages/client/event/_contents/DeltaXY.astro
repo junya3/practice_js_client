@@ -1,0 +1,32 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 15;
+export const id = 'deltaXY';
+const code = `window.addEventListener('wheel', (e) => {
+  console.log(e.deltaY);
+})`;
+---
+
+<Card id={id}>
+  <h2>e.deltaX / Yについて</h2>
+  <p>スクロール量を取得する</p>
+  <Code code={code} />
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('deltaXY');
+  if (root) {
+    const output = root.querySelector('output');
+    if (output) {
+      window.addEventListener('wheel', (e) => {
+        output.textContent = [
+          `scrollX: ${e.deltaX}px`,
+          `scrollY: ${e.deltaY}px`,
+        ].join('\n');
+      });
+    }
+  }
+</script>

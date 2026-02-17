@@ -1,0 +1,49 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 14;
+export const id = 'stopPropagation';
+const code = `child02.addEventListener('click', (e) => {
+  e.stopPropagation();
+  output.textContent += '【02】子が反応（伝播停止）\n';
+});`;
+---
+
+<Card id={id}>
+  <h2>e.stopPropagation()について</h2>
+  <p>イベントが伝播するのを停止する。</p>
+  <Code code={code} />
+  <button type='button' id='btn01'><span>子要素</span>伝播あり</button>
+  <button type='button' id='btn02'><span>子要素</span>伝播なし</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('stopPropagation');
+  if (root) {
+    const parent01 = root.querySelector('#btn01');
+    const parent02 = root.querySelector('#btn02');
+    const child01 = root.querySelector('#btn01 span');
+    const child02 = root.querySelector('#btn02 span');
+    const output = root.querySelector('output');
+    if (parent01 && parent02 && child01 && child02 && output) {
+      parent01.addEventListener('click', () => {
+        output.textContent += '【01】親が反応\n';
+      });
+
+      parent02.addEventListener('click', () => {
+        output.textContent += '【02】親が反応\n';
+      });
+
+      child01.addEventListener('click', () => {
+        output.textContent += '【01】子が反応\n';
+      });
+
+      child02.addEventListener('click', (e) => {
+        e.stopPropagation();
+        output.textContent += '【02】子が反応（伝播停止）\n';
+      });
+    }
+  }
+</script>

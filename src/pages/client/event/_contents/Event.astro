@@ -1,0 +1,36 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 7;
+export const id = 'event';
+const code = `const event = new Event('click');`;
+---
+
+<Card id={id}>
+  <h2>new Eventについて</h2>
+  <p>新しいイベントを生成する</p>
+  <Code code={code} />
+  <button type='button'>実行</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('event');
+  if (root) {
+    const button = root.querySelector<HTMLButtonElement>('button');
+    const output = root.querySelector('output');
+
+    if (button && output) {
+      let count = 0;
+      const clickHandler = (e: Event) => {
+        output.textContent = `${count}回目のイベントが発火しました`;
+        count++;
+      };
+      button.addEventListener('click', clickHandler);
+
+      const event = new Event('click');
+      button.dispatchEvent(event);
+    }
+  }
+</script>

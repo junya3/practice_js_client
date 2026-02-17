@@ -1,0 +1,51 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 6;
+export const id = 'dataTransfer';
+const code = ``;
+---
+
+<Card id={id}>
+  <h2>e.dataTransferについて</h2>
+  <p>ドラッグアンドドロップ操作の情報を取得する</p>
+  <Code code={code} />
+  <input
+    type='text'
+    placeholder='何かをドラッグアンドドロップしてみてください'
+  />
+  <output></output>
+</Card>
+
+<style>
+  input[type='text'] {
+    padding: 0.25rem 0.5rem;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    font-size: 0.75rem;
+    &::placeholder {
+      color: #ccc;
+      font-size: inherit;
+    }
+  }
+</style>
+
+<script>
+  const root = document.getElementById('dataTransfer');
+  if (root) {
+    const input = root.querySelector<HTMLInputElement>('input');
+    const output = root.querySelector('output');
+    if (input && output) {
+      input.addEventListener('dragover', (e) => {
+        e.preventDefault();
+      });
+      input.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (e.dataTransfer) {
+          output.textContent = e.dataTransfer.getData('text');
+        }
+      });
+    }
+  }
+</script>

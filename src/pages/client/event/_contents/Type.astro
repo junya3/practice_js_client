@@ -1,0 +1,34 @@
+---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
+
+export const contentOrder = 10;
+export const id = 'type';
+const code = `window.addEventListener('keydown', (e) => {
+  console.log(e.type);
+});`;
+---
+
+<Card id={id}>
+  <h2>e.typeについて</h2>
+  <p>発生したイベントの種類を取得する</p>
+  <Code code={code} />
+  <button type='button'>取得</button>
+  <output></output>
+</Card>
+
+<script>
+  const root = document.getElementById('type');
+  if (root) {
+    const button = root.querySelector('button');
+    const output = root.querySelector('output');
+    if (button && output) {
+      button.addEventListener('click', (e) => {
+        output.textContent = e.type;
+      });
+      button.addEventListener('contextmenu', (e) => {
+        output.textContent = e.type;
+      });
+    }
+  }
+</script>
