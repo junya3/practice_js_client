@@ -92,3 +92,15 @@ output {
     font-size: 0.75rem;
   }
 }
+
+canvas {
+  display: grid;
+  border: 1px solid mix-transparent(black, 25);
+  width: 200px;
+  height: 200px;
+}
+
+output > canvas {
+  margin-top: 0.5rem;
+  background: #fff;
+}

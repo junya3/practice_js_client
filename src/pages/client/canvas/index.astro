@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+export const order = 4;
+export const title = 'Canvas';
+
+interface CardProps {
+  contentOrder?: number;
+  id: string;
+  file: string;
+  default: AstroComponentFactory;
+}
+
+const cards = await Astro.glob<CardProps>('./*/*.astro');
+// _templateだけ排除
+const filteredCards = cards.filter((card) => !card.file.includes('_template'));
+const sortedCards = filteredCards.sort(
+  (a, b) => (a.contentOrder ?? 0) - (b.contentOrder ?? 0),
+);
+---
+
+<Layout title={title}>
+  <ol>
+    {
+      sortedCards.map((card) => (
+        <li>
+          <a href={`#${card.id}`}>{card.id}</a>
+        </li>
+      ))
+    }
+  </ol>
+  <ul class='cards'>
+    {
+      sortedCards.map(({ default: Item }) => (
+        <li class='cards__item'>
+          <Item />
+        </li>
+      ))
+    }
+  </ul>
+  <a class='return' href='/client'>戻る</a>
+</Layout>
