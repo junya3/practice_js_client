@@ -1,0 +1,17 @@
+---
+import ContentsList from '@/components/common/ContentsList.astro';
+import Layout from '@/layouts/Layout.astro';
+
+interface PageFrontmatter {
+  url: string;
+  title: string;
+}
+
+const pages = await Astro.glob<PageFrontmatter>('./*/index.astro');
+export const title = 'API';
+---
+
+<Layout title={title}>
+  <ContentsList contents={pages} />
+  <a class='return' href='/'>戻る</a>
+</Layout>
