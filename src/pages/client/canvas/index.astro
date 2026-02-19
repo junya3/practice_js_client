@@ -1,43 +1,61 @@
 ---
+import Card from '@/components/common/Card.astro';
+import Code from '@/components/common/Code.astro';
 import Layout from '@/layouts/Layout.astro';
 
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 export const order = 4;
 export const title = 'Canvas';
-
-interface CardProps {
-  contentOrder?: number;
-  id: string;
-  file: string;
-  default: AstroComponentFactory;
-}
-
-const cards = await Astro.glob<CardProps>('./*/*.astro');
-// _templateだけ排除
-const filteredCards = cards.filter((card) => !card.file.includes('_template'));
-const sortedCards = filteredCards.sort(
-  (a, b) => (a.contentOrder ?? 0) - (b.contentOrder ?? 0),
-);
 ---
 
 <Layout title={title}>
-  <ol>
-    {
-      sortedCards.map((card) => (
-        <li>
-          <a href={`#${card.id}`}>{card.id}</a>
-        </li>
-      ))
-    }
-  </ol>
   <ul class='cards'>
-    {
-      sortedCards.map(({ default: Item }) => (
-        <li class='cards__item'>
-          <Item />
-        </li>
-      ))
-    }
+    <Card>
+      <h2>context.miterLimit</h2>
+      <p>線の角を尖らせる限界値を設定する</p>
+      <Code code='ctx.miterLimit = 10;' />
+    </Card>
+    <Card>
+      <h2>ctx.shadowBlur</h2>
+      <p>影のぼかしを設定取得する</p>
+      <Code code='ctx.shadowBlur = 2;' />
+    </Card>
+    <Card>
+      <h2>ctx.getImageData()</h2>
+      <p>canvasからピクセルデータをコピーする</p>
+      <Code code='const data = ctx.getImageData(x, y, w, h)' />
+    </Card>
+    <Card>
+      <h2>ctx.globalAlpha</h2>
+      <p>不透明度を設定する</p>
+      <Code code='ctx.globalAlpha = .5' />
+    </Card>
+    <Card>
+      <h2>ctx.isPointInPath</h2>
+      <p>指定した座標に現在のパスがあればtrueを返します。</p>
+      <Code code='const result = ctx.isPointInPath(100,100);' />
+    </Card>
+    <Card>
+      <h2>ctx.quadraticCurveTo()</h2>
+      <p>2次ベジェ曲線を使ってサブパスを追加する</p>
+      <Code code='ctx.quadraticCurveTo(x, y, pointx, pointy)' />
+    </Card>
+    <Card>
+      <h2>ctx.createPattern()</h2>
+      <p>パターンを作る</p>
+      <p>img, video, canvasを第1引数に受け付けることができます。</p>
+      <Code code='ctx.createPattern("img", "repeat");' />
+    </Card>
+    <Card>
+      <h2>ctx.globalCompositeOperation</h2>
+      <p>描画モードの設定</p>
+      <Code code='ctx.globalCompositeOperation = "screen"' />
+    </Card>
+    <Card>
+      <h2>ctx.addColorStop()</h2>
+      <p>グラデーションのオフセット・カラーを追加する</p>
+      <Code code='ctx.addColorStop(offset, color);' />
+    </Card>
   </ul>
+
   <a class='return' href='/client'>戻る</a>
 </Layout>

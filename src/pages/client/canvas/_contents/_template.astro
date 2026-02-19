@@ -4,12 +4,11 @@ import Code from '@/components/common/Code.astro';
 
 export const contentOrder = 0;
 export const id = '';
-const code = `'`;
+const code = ``;
 ---
 
 <Card id={id}>
   <h2></h2>
-  <p></p>
   <Code code={code} />
   <button type='button'>変更</button>
   <output>
@@ -18,14 +17,18 @@ const code = `'`;
 </Card>
 
 <script>
-  const root = document.getElementById('strokeStyle');
+  const root = document.getElementById('');
   if (root) {
     const button = root.querySelector('button');
     const output = root.querySelector('output');
     const canvas = root.querySelector('canvas');
     if (button && output && canvas) {
       const ctx = canvas.getContext('2d');
-      function draw(target: CanvasRenderingContext2D, style: string) {}
+      if (!ctx) return;
+      function draw(target: CanvasRenderingContext2D, style: string) {
+        if (target && style) {
+        }
+      }
     }
   }
 </script>
